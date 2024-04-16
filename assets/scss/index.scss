@@ -1,0 +1,68 @@
+@import "/assets/scss/variables";
+
+body{
+    background: -webkit-linear-gradient(black, $primary);
+      background: -moz-linear-gradient(black, $primary);
+      background: -o-linear-gradient(black, $primary);
+      background: linear-gradient(black, $primary);
+      background-attachment:fixed;
+}
+
+
+.login-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    width: 100vh;
+    height: 50vh;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    font-family: $primary-font;
+    font-weight: 800;
+    h1{
+        font-family: $primary-title;
+        font-size: 60px;
+        margin: 0;
+    }
+    span{
+        color: $secondary;
+        font-family: $secondary-title;
+        font-size: 58px;
+    }
+    h2{
+        font-family: $primary-font;
+        font-size: 18px;
+    }
+    .buttons{
+        margin-top: 20px;
+        width: 60%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        button{
+            font-family: $secondary-font;
+            font-weight: 800;
+            font-size: 22px;
+            text-transform: uppercase;
+            background-color: transparent;
+            border: none;
+            a{
+                color: white;
+                text-decoration: none;
+            }
+        }
+        button:hover{
+            opacity: 0.5;
+            cursor: pointer;
+        }
+    }
+}

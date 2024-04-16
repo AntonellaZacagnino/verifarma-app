@@ -1,6 +1,13 @@
+<script setup lang="ts">
+const route = useRoute()
+</script>
+
+<style lang="scss">
+@use "~/assets/scss/index.scss";
+</style>
 
 <template>
-  <!-- <div class="container">
+  <div class="container">
     <div class="login-container">
       <h1>Veri<span>Movies</span></h1>
       <h2>What do you want to watch today?</h2>
@@ -13,6 +20,6 @@
         </button>
       </div>
     </div>
-  </div> -->
-  <NuxtPage />
+  </div>
+  <!-- <NuxtPage /> -->
 </template>
