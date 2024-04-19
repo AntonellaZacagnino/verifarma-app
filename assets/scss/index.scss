@@ -59,10 +59,10 @@ body{
                 color: white;
                 text-decoration: none;
             }
-        }
-        button:hover{
-            opacity: 0.5;
-            cursor: pointer;
+            &:hover{
+                opacity: 0.5;
+                cursor: pointer;
+            }
         }
     }
 }

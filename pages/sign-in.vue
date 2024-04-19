@@ -1,6 +1,3 @@
-<script setup lang="ts">
-const route = useRoute()
-</script>
 
 <style lang="scss">
 @use "~/assets/scss/sign-in.scss";
@@ -9,7 +6,7 @@ const route = useRoute()
 <template>
     <div class="container">
         <div class="signUp-container">
-            <h1>Veri<span>Movies</span></h1>
+            <nuxt-link to="/"><h1>Veri<span>Movies</span></h1></nuxt-link>
             <h2>Sign in</h2>
             <div class="form">
                 <div class="input">
@@ -20,7 +17,7 @@ const route = useRoute()
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password">
                 </div>
-                <button>Continue</button>
+                <nuxt-link to="/home"><button>Continue</button></nuxt-link>
             </div>
             <div class="options">
                 <button>Forgot password?</button>
@@ -31,3 +28,7 @@ const route = useRoute()
   </template>
 
  
+
+<script setup lang="ts">
+    const route = useRoute()
+</script>

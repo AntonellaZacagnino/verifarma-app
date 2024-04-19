@@ -1,0 +1,109 @@
+@import "/assets/scss/variables";
+
+.search-container{
+    border-radius: 20px;
+    width: 65vw;
+    height: fit-content;
+    position: relative;
+    top: 8vw;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-bottom: 12vw;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    .search-input{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-top: 5vw;
+        margin-bottom: 4vw;
+        label{
+            color: white;
+            font-family: $primary-font;
+            font-weight: 800;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        input{
+            border-radius: 20px;
+            border: none;
+            height: 3vw;
+            width: 20vw;
+            text-indent: 1.5vh;
+        }
+    }
+    button{
+        border: none;
+        background-color: transparent;
+        color: white;
+        font-family: $secondary-font;
+        text-transform: uppercase;
+        font-size: 25px;
+        font-weight: 800;
+        position: relative;
+        display: flex;
+        align-items: center;
+        .more-details{
+            position: absolute;
+            background-color: black;
+            height: 14.5vw;
+            width: 10vw;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            &:hover{
+                opacity: 0.5;
+            }
+        }
+        &:hover{
+            color: white;
+            cursor: pointer;
+        }
+    }
+    .movies-list{
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        width: 75vw;
+        .movie{
+            background: rgba(255, 255, 255, 0.1);
+            width: 10vw;
+            height: 20vw;
+            margin: 5px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 20px 10px;
+            border-radius: 10px;
+            animation: scale-up-center .5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            h6{
+                color: white;
+                font-family: $secondary-font;
+                font-size: 14px;
+                margin: 10px 0;
+            }
+            img{
+                height: 14.5vw;
+                width: 10vw;
+                &:hover{
+                    opacity: 0.5;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+  @keyframes scale-up-center {
+    0% {
+              transform: scale(0.9);
+    }
+    100% {
+              transform: scale(1);
+    }
+  }
+  

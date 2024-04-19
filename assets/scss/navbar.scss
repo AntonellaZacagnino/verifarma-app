@@ -1,0 +1,39 @@
+@import "/assets/scss/variables";
+
+.navbar-content{
+    background-color: black;
+    height: 7vh;
+    position: absolute;
+    top: 0;
+    width:206vh;
+    display: flex;
+    justify-content: space-between;
+    .logo{
+        position: relative;
+        left: 3%;
+        h1{
+            font-family: $primary-title;
+            font-size: 30px;
+            margin: 0;
+            color: white;
+        }   
+        span{
+            color: $secondary;
+            font-family: $secondary-title;
+            font-size: 32px;
+        }
+    }
+    .menu{
+        display: flex;
+        align-items: center;
+        p{
+            font-family: $secondary-font;
+            margin: 15px;
+            color: white;
+        }
+        p:hover{
+            opacity: 0.5;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,83 @@
+@import "/assets/scss/variables";
+
+.go-back{
+    margin: 6vw;
+    a{
+        text-decoration: none;
+        button{
+            color: white;
+            background: transparent;
+            border: none;
+            font-family: $primary-font;
+            text-transform: uppercase;
+            font-size: 1.6vw;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            &:hover{
+                opacity: 0.5;
+                cursor: pointer;
+            }
+            span{
+                margin-right: 1vw;
+            }
+        }
+    }
+}
+.movie-container{
+    border-radius: 20px;
+    position: absolute;
+    top: 10%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    color:white;
+    margin: 3vw 10vw;
+    justify-content: space-around;
+    .details-container{
+        h1{
+            font-size: 3.5vw;
+            font-family: $primary-font;
+            margin-bottom: 0;
+        }
+        h5{
+            margin-top: 0;
+            font-family: $secondary-font;
+        }
+        .details{
+            display: flex;
+            .info{
+                display: flex;
+                flex-direction: column;
+                font-family: $secondary-font;
+                span{
+                    font-size: 1vw;
+                }
+            }
+            .ratings{
+                border-left: 1px solid white;
+                margin-left: 4vw;
+                padding: 0 1vw;
+                h6{
+                    font-size: 1.3vw;
+                    margin: 0 0 0;
+                }
+                font-family: $secondary-font;
+                ul{
+                    padding-left: 1vw;
+                    font-size: 1.1vw;
+                    list-style:circle
+                }
+            }
+        }
+        p{
+            margin-top: 3vw;
+            font-family: $secondary-font;
+            font-size: 1.2vw;
+            width: 40vw;
+            text-align: justify;
+        }
+    }
+}

@@ -1,7 +1,3 @@
-<script setup lang="ts">
-const route = useRoute()
-</script>
-
 <style lang="scss">
 @use "~/assets/scss/sign-up.scss";
 </style>
@@ -9,7 +5,7 @@ const route = useRoute()
 <template>
     <div class="container">
         <div class="signUp-container">
-            <h1>Veri<span>Movies</span></h1>
+            <nuxt-link to="/"><h1>Veri<span>Movies</span></h1></nuxt-link>
             <h2>Sign up</h2>
             <div class="form">
                 <div class="input">
@@ -30,4 +26,7 @@ const route = useRoute()
     </div>
   </template>
 
+<script setup lang="ts">
+    const route = useRoute()
+</script>
  

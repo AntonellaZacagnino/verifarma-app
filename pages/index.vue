@@ -1,6 +1,4 @@
-<script setup lang="ts">
-const route = useRoute()
-</script>
+
 
 <style lang="scss">
 @use "~/assets/scss/index.scss";
@@ -23,3 +21,7 @@ const route = useRoute()
   </div>
   <!-- <NuxtPage /> -->
 </template>
+
+<script setup lang="ts">
+  const route = useRoute()
+</script>

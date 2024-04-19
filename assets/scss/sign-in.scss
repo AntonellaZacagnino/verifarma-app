@@ -26,10 +26,14 @@ body{
     flex-direction: column;
     color: white;
     font-weight: 800;
-    h1{
-        font-family: $primary-title;
-        font-size: 50px;
-        margin: 0;
+    a{
+        text-decoration: none;
+        color: white;
+        h1{
+            font-family: $primary-title;
+            font-size: 50px;
+            margin: 0;
+        }   
     }
     span{
         color: $secondary;
@@ -69,9 +73,9 @@ body{
             background-color: transparent;
             border: none;
             color: white;
-        }
-        button:hover{
-            cursor: pointer;
+            &:hover{
+                cursor: pointer;
+            }
         }
     }
     .options{
@@ -85,9 +89,9 @@ body{
             background-color: transparent;
             font-size: 13px;
             margin: 2px;
-        }
-        button:hover{
-            cursor: pointer;
+            &:hover{
+                cursor: pointer;
+            }
         }
     }
 }
