@@ -10,23 +10,39 @@
             <div class="form">
                 <div class="input">
                     <label for="username">Username</label>
-                    <input type="text" name="username" id="username">
+                    <input v-model="username" type="text" name="username" id="username">
                 </div>
                 <div class="input">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email">
+                    <input v-model="email" type="email" name="email" id="email">
                 </div>
                 <div class="input">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password">
+                    <input v-model="password" type="password" name="password" id="password">
                 </div>
-                <button>Create new user</button>
+                <button @click="handleRegistration">Create new user</button>
             </div>
         </div>
     </div>
   </template>
 
 <script setup lang="ts">
+    import { ref } from 'vue';
+
     const route = useRoute()
+    const { $auth } = useNuxtApp()
+    const { register } = useFirebase()
+
+    const username = ref('')
+    const email = ref('')
+    const password = ref('')
+
+    const handleRegistration = async() => {
+        try{
+            await register(username.value, email.value, password.value)
+        } catch (error){
+            console.log('error')
+        }
+    }
 </script>
  

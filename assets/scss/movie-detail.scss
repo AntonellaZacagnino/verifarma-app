@@ -1,7 +1,7 @@
 @import "/assets/scss/variables";
 
 .go-back{
-    margin: 6vw;
+    margin: 6vw 6vw 0;
     a{
         text-decoration: none;
         button{
@@ -20,6 +20,7 @@
             }
             span{
                 margin-right: 1vw;
+                font-size: 2vw;
             }
         }
     }
@@ -27,7 +28,7 @@
 .movie-container{
     border-radius: 20px;
     position: absolute;
-    top: 10%;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
@@ -45,6 +46,7 @@
         h5{
             margin-top: 0;
             font-family: $secondary-font;
+            font-size: .8vw;
         }
         .details{
             display: flex;
@@ -79,5 +81,62 @@
             width: 40vw;
             text-align: justify;
         }
+    }
+    img{
+        height: 30vw;
+        width: 20vw;
+    }
+}
+
+////// Responsive
+/// 
+/// 
+
+@media screen and (max-width:1440px) {
+    .movie-container{
+        margin: 0;
+        margin-bottom: 4vw;
+        position: unset;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .movie-container{
+        .details-container{
+            h5{
+                font-size: 1.2vw;
+            }
+            .details{
+                .info,.ratings{
+                    span{
+                        font-size: 1.2vw;
+                    }
+                }
+            }
+            p{
+                font-size: 1.5vw;
+                width: 45vw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .movie-container{
+        margin: 3vw 10vw;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .go-back{
+        margin-top: 12vw;
+        a{
+            button, button span{
+                font-size: 4vw;
+            }
+        }
+    }
+    .movie-container{
     }
 }

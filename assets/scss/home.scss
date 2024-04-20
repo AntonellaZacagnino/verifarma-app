@@ -67,6 +67,8 @@
     .movies-list{
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
         list-style: none;
         width: 75vw;
         .movie{
@@ -98,12 +100,163 @@
     }
 }
 
-  @keyframes scale-up-center {
-    0% {
-              transform: scale(0.9);
+
+////// Responsive
+/// 
+/// 
+@media (max-width:2560px) {
+    .search-container{
+        top: 0;
+        .search-input{
+            margin-bottom: 3vw;
+            label{
+                font-size: 1.7vw;
+                margin-bottom: 8%;
+            }
+            input{
+                border-radius: 40px;
+                font-size: 1vw;
+                text-indent: 25px;
+            }
+        }
+        button{
+            font-size: 40px;
+            margin-bottom: 3vw;
+        }
+        .movies-list{
+            .movie{
+                height: 22vw;
+                button{
+                    margin: 0;
+                }
+                h6{
+                    font-size: 1.1vw;
+                }
+            }
+        }
     }
-    100% {
-              transform: scale(1);
+}
+
+@media (max-width:1440px) {
+    .search-container{
+        .search-input{
+            label{
+                font-size: 22px;
+            }
+            input{
+                font-size: 18px;
+                text-indent: 15px;
+            }
+        }
+        button{
+            font-size: 30px;
+        }
+        .movies-list{
+            margin-bottom: 5vw;
+            .movie{
+                height: 22vw;
+                h6{
+                    font-size:1.5vw;
+                }
+            }
+        }
     }
-  }
-  
+}
+@media (max-width:1024px) {
+    .search-container{
+        .search-input{
+            input{
+                width: 22vw;
+                height: 3.5vw;
+                font-size: 15px;
+            }
+        }
+        .movies-list{
+            .movie{
+                height: 22vw;
+                h6{
+                    font-size:1.5vw
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .search-container{
+        button{
+            font-size: 18px;
+        }
+        .search-input{
+            input{
+                width:25vw;
+                height:5vw;
+            }
+        }
+        .movies-list{
+            margin-bottom: 45vw;
+            .movie{
+                height: 28vw;
+                h6{
+                    font-size: 2.2vw;
+                    width: 14vw;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:430px) {
+    .search-container{
+        top: 15vw;
+        .search-input{
+            margin-bottom: 8vw;
+            input{
+                width: 45vw;
+                height: 10vw;
+            }
+        }
+        button{
+            .more-details{
+                height: 40vw;
+                width: 30vw;
+            }
+        }
+        .movies-list{
+            padding: 0;
+            margin-bottom: 75vw;
+            .movie{
+                margin:5px;
+                height: 55vw;
+                width: 22vw;
+                img{
+                    height: 40vw;
+                    width: 28vw;
+                }
+                h6{
+                    font-size: 14px;
+                    width: 29vw;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:375px) {
+    .search-container{
+        .movies-list{
+            .movie{
+                height: 55vw;
+                width: 20vw;
+                padding-top: 14px;
+                img{
+                    height: 37vw;
+                    width: 25vw;
+                }
+                h6{
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}

@@ -31,15 +31,15 @@
             </div>
           </div>
           <p>{{ movieDetails.Plot }}</p>
-
         </div>
         <div >
-          <img :src="movieDetails.Poster" alt="">
+          <img v-if="movieDetails.Poster != 'N/A' ":src="movieDetails.Poster" alt="">
+          <img v-else src="/not-image.jpg">
         </div>
-        <!-- <pre>{{ movieDetails }}</pre> -->
       </div>
     </div>
     <div v-else class="loader-container"> 
+      {{ errorResponse }}
       <div class="dots-spinner" :style="spinnerStyle">
         <div class="dot"></div>
         <div class="dot"></div>
@@ -61,18 +61,19 @@
       Navbar
     },
     setup() {
-      const route = useRoute();
-      const movieDetails = ref(null);
+      var route = useRoute();
+      var movieDetails = ref(null);
+      var errorResponse = ''
 
       console.log(route.query.movie)
       async function fetchMovieDetails(movieID) {
         console.log(2)
         try {
           const response = await axios.get(`http://www.omdbapi.com/?apikey=87430ed5&i=${movieID}`);
-          console.log(response)
+          console.log(response.data)
           return response.data;
         } catch (error) {
-          console.error(error);
+          errorResponse = error
           return null;
         }
       }

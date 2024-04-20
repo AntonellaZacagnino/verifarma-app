@@ -13,11 +13,11 @@
       <button @click="findMovie">Search</button>
       <ul class="movies-list">
         <li class="movie" v-for="movie in movieList" :key="movie.imdbID">
-              <button @click="movieDetails(movie.imdbID)">
-                <div class="more-details"><span>more details</span></div>
-                <img v-if="movie.Poster != 'N/A'" :src="movie.Poster" alt="">
-                <img v-else src="/not-image.jpg" alt="">
-              </button>
+          <button @click="movieDetails(movie.imdbID)">
+            <div class="more-details"><span>more details</span></div>
+            <img v-if="movie.Poster != 'N/A'" :src="movie.Poster" alt="">
+            <img v-else src="/not-image.jpg" alt="">
+          </button>
           <h6>{{ movie.Title }}</h6>
         </li>
       </ul>
@@ -37,9 +37,10 @@ export default {
     Navbar
   },
   setup() {
-    const route = useRoute();
-    const movieList = ref([]);
-    const query = ref('');
+    var route = useRoute();
+    var movieList = ref([]);
+    var query = ref('');
+    var errorResponse = ''
 
     const fetchMovies = async (query) => {
       try {
@@ -47,7 +48,7 @@ export default {
         movieList.value = response.data.Search;
         console.log(response)
       } catch (error) {
-        console.error(error, 'error aaaaaa');
+        errorResponse = error
       }
     };
 
