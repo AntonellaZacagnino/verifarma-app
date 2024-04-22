@@ -13,7 +13,7 @@
         <input aria-label="Insert a movie here" v-model="query" type="search" name="search" id="search">
       </div>
       <button class='search' @click="findMovie">Search</button>
-      <div v-if="movieList.length > 0" class="pagination">
+      <div v-if="movieList.length > 0 && noResults == false" class="pagination">
         <button @click="previous" class="pagination-btn previous">
           <span aria-hidden="true" class="material-symbols-outlined">arrow_back_ios</span>
           Previous
@@ -22,6 +22,9 @@
           Next
           <span aria-hidden="true" class="material-symbols-outlined">arrow_forward_ios</span>
         </button>
+      </div>
+      <div v-else-if="noResults == true">
+        <h1>Sorry, there are no titles available.</h1>
       </div>
       <ul class="movies-list">
         <li class="movie" v-for="movie in movieList" :key="movie.imdbID">
@@ -52,12 +55,18 @@ export default {
     var errorResponse = ''
     var currentPage = 1;
     var totalPages = ref('')
-
+    var noResults = ref(false)
     const fetchMovies = async (query,currentPage) => {
       try {
+        movieList.value = []
         const response = await axios.get(`http://www.omdbapi.com/?page=${currentPage}&s=${query}&type=movie&apikey=87430ed5`);
-        totalPages = parseInt(response.data.totalResults / 10)
-        movieList.value = response.data.Search;
+        if (response.data.Response == 'True'){
+          totalPages = parseInt(response.data.totalResults / 10)
+          movieList.value = response.data.Search;
+          noResults.value = false
+        } else {
+          noResults.value = true
+        }
       } catch (error) {
         errorResponse = error
       }
@@ -89,6 +98,7 @@ export default {
       totalPages,
       next,
       previous,
+      noResults
     };
   },
   methods:{
