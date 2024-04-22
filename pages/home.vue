@@ -3,18 +3,30 @@
 </style>
 
 <template>
-  <div>
+  <UContainer>
     <Navbar />
+    <Nuxt keep-alive />
     <div class="search-container">
+      
       <div class="search-input">
         <label for="search">Find a movie</label>
         <input v-model="query" type="search" name="search" id="search">
       </div>
-      <button @click="findMovie">Search</button>
+      <button class='search' @click="findMovie">Search</button>
+      <div v-if="movieList.length > 0" class="pagination">
+        <button @click="previous" class="pagination-btn previous">
+          <span class="material-symbols-outlined">arrow_back_ios</span>
+          Previous
+        </button>
+        <button @click="next" class="pagination-btn next">
+          Next
+          <span class="material-symbols-outlined">arrow_forward_ios</span>
+        </button>
+      </div>
       <ul class="movies-list">
         <li class="movie" v-for="movie in movieList" :key="movie.imdbID">
           <button @click="movieDetails(movie.imdbID)">
-            <div class="more-details"><span>more details</span></div>
+            <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl more-details"><span>more details</span></div>
             <img v-if="movie.Poster != 'N/A'" :src="movie.Poster" alt="">
             <img v-else src="/not-image.jpg" alt="">
           </button>
@@ -22,7 +34,7 @@
         </li>
       </ul>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script>
@@ -31,42 +43,59 @@ import axios from 'axios';
 import Navbar from '~/components/navbar.vue';
 import { useRoute } from 'vue-router';
 
-
 export default {
   components: {
     Navbar
   },
   setup() {
-    var route = useRoute();
     var movieList = ref([]);
     var query = ref('');
     var errorResponse = ''
+    var currentPage = 1;
+    var totalPages = ref('')
 
-    const fetchMovies = async (query) => {
+    const fetchMovies = async (query,currentPage) => {
       try {
-        const response = await axios.get(`http://www.omdbapi.com/?s=${query}&type=movie&apikey=87430ed5`);
+        const response = await axios.get(`http://www.omdbapi.com/?page=${currentPage}&s=${query}&type=movie&apikey=87430ed5`);
+        totalPages = parseInt(response.data.totalResults / 10)
         movieList.value = response.data.Search;
-        console.log(response)
       } catch (error) {
         errorResponse = error
       }
     };
 
     const findMovie = () => {
-      fetchMovies(query.value);
+      fetchMovies(query.value, currentPage);
     };
     
+    const next = () => {
+      if(currentPage >= 1 && currentPage != totalPages) {
+        currentPage++
+        findMovie()
+      }
+    }
     
+    const previous = () => {
+      if(currentPage <= currentPage && currentPage > 1){
+        currentPage--
+        findMovie()
+      }
+    }
+
     return {
       movieList,
       query,
-      findMovie
+      findMovie,
+      currentPage,
+      totalPages,
+      next,
+      previous,
     };
   },
   methods:{
     movieDetails(movieID){
       window.location.href = `/movie-detail?${new URLSearchParams({movie: movieID})}`
-    }
+    },
   }
 };
 </script>

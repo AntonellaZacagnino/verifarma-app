@@ -9,18 +9,13 @@
       <div class="go-back">
         <nuxt-link to="/home"><button><span class="material-symbols-outlined">arrow_circle_left</span>Go back</button></nuxt-link>
       </div>
-      <div class="movie-container">
-        <div class="details-container">
+      <UContainer>
+        <div class="title">
           <h1>{{ movieDetails.Title}}({{ movieDetails.Year }})</h1>
           <h5>{{ movieDetails.Runtime }}</h5>
-          <div class="details">
-            <div class="info">
-              <span><strong>Released date:</strong> {{ movieDetails.Released }}</span>
-              <span><strong>Rated:</strong> {{ movieDetails.Rated }}</span>
-              <span><strong>Genre:</strong> {{ movieDetails.Genre }}</span>
-              <span><strong>Director:</strong> {{ movieDetails.Director }}</span>
-              <span><strong>Cast:</strong> {{ movieDetails.Actors }}</span>
-            </div>
+        </div>
+        <div class="movie-container">
+          <div class="details-container">
             <div class="ratings">
               <h6>Ratings</h6>
               <ul>
@@ -29,14 +24,23 @@
                 </li>
               </ul>
             </div>
+            <p>{{ movieDetails.Plot }}</p>
           </div>
-          <p>{{ movieDetails.Plot }}</p>
-        </div>
-        <div >
+        <div class="poster-and-details">
           <img v-if="movieDetails.Poster != 'N/A' ":src="movieDetails.Poster" alt="">
           <img v-else src="/not-image.jpg">
+          <div class="details">
+            <div class="info">
+              <span><strong>Released date:</strong> {{ movieDetails.Released }}</span>
+              <span><strong>Rated:</strong> {{ movieDetails.Rated }}</span>
+              <span><strong>Genre:</strong> {{ movieDetails.Genre }}</span>
+              <span><strong>Director:</strong> {{ movieDetails.Director }}</span>
+              <span><strong>Cast:</strong> {{ movieDetails.Actors }}</span>
+            </div>
+          </div>
         </div>
       </div>
+      </UContainer>
     </div>
     <div v-else class="loader-container"> 
       {{ errorResponse }}

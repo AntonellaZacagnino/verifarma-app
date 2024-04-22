@@ -8,89 +8,96 @@ body{
       background-attachment:fixed;
 }
 
-.signUp-container {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    width: 100vh;
-    height: 70vh;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+.container{
     display: flex;
-    align-items: center;
-    text-align: center;
-    padding-top: 40px;
-    flex-direction: column;
-    color: white;
-    font-weight: 800;
-    a{
-        text-decoration: none;
+    .signIn-container {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        width: 80vw;
+        height: 70vw;
+        max-width: 800px;
+        min-width: 300px;
+        max-height: 340px;
+        min-height: 400px;
+        margin-top: calc(4px + 10vw);
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        flex-direction: column;
         color: white;
-        h1{
-            font-family: $primary-title;
-            font-size: 50px;
-            margin: 0;
-        }   
-    }
-    span{
-        color: $secondary;
-        font-family: $secondary-title;
-        font-size: 52px;
-    }
-    h2{
-        font-family: $secondary-font;
-        font-size: 26px;
-        text-transform: uppercase;
-        margin-top: 10px;
-        margin-bottom: 0;
-    }
-    .form{
-         .input{
+        font-family: $primary-font;
+        font-weight: 800;
+        a{
+            text-decoration: none;
+            color: white;
+            h1{
+                font-family: $primary-title;
+                font-size: calc(6px + 5vw);
+                margin: 0;
+            }   
+        }
+        span{
+            color: $secondary;
+            font-family: $secondary-title;
+            font-size: calc(8px + 5vw);
+        }
+        h2{
+            font-family: $secondary-font;
+            font-size: 26px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+        .form{
+            .input{
+                display: flex;
+                flex-direction: column;
+                margin: 25px 0;
+                font-family: $primary-font;
+                label{
+                    font-size: 12px;
+                    font-weight: 500;
+                }
+                input{
+                    width: 270px;
+                    height: 35px;
+                    border-radius: 30px;
+                    border: none;
+                    text-indent: 15px;
+                }
+            }
+            button{
+                font-family: $secondary-font;
+                text-transform: uppercase;
+                font-weight: 800;
+                font-size: 20px;
+                background-color: transparent;
+                border: none;
+                color: white;
+                padding: 0.5vw 1vw;
+                &:hover{
+                    cursor: pointer;
+                    background-color: $secondary !important;
+                    opacity: 0.5;
+                    border-radius: 10px;
+                }
+            }
+        }
+        .options{
             display: flex;
             flex-direction: column;
-            margin: 25px 0;
-            font-family: $primary-font;
-            label{
-                font-size: 12px;
-                font-weight: 500;
-            }
-            input{
-                width: 270px;
-                height: 35px;
-                border-radius: 30px;
+            margin-top: 10px;
+            button{
+                font-family: $secondary-font;
+                color: white;
                 border: none;
-                text-indent: 15px;
-            }
-        }
-        button{
-            font-family: $secondary-font;
-            text-transform: uppercase;
-            font-weight: 800;
-            font-size: 20px;
-            background-color: transparent;
-            border: none;
-            color: white;
-            &:hover{
-                cursor: pointer;
-            }
-        }
-    }
-    .options{
-        display: flex;
-        flex-direction: column;
-        margin-top: 10px;
-        button{
-            font-family: $secondary-font;
-            color: white;
-            border: none;
-            background-color: transparent;
-            font-size: 13px;
-            margin: 2px;
-            &:hover{
-                cursor: pointer;
+                background-color: transparent;
+                font-size: 13px;
+                margin: 2px;
+                &:hover{
+                    cursor: pointer;
+                }
             }
         }
     }

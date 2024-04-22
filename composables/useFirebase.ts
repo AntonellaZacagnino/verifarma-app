@@ -1,36 +1,34 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile  } from "firebase/auth";
+
+var displayUsername = ''
+const toast = useToast()
 
 export const useFirebase = () => {
     const { $auth } = useNuxtApp()
-
-    const register = async (username: string, email: string, password: string) => {
+        const register = async (email: string, password: string) => {
         try{
             const userCredentials = await createUserWithEmailAndPassword($auth, email, password);
-            const user = userCredentials.user;
-            updateProfile(userCredentials.user, {
-                displayName: username
-            }).then(() => {
-            }).catch((error) => {
-            });
             goTo('/home')
         } catch ( error) {
-            console.log(error);
+            toast.add({
+                title: 'The user already exist.',
+                timeout: 20000
+            })
+            console.log(error, 'error aaaaaaa');
         }
     }
 
     const login = async (email:string, password:string) => {
         try {
             const userCredentials = await signInWithEmailAndPassword($auth, email, password);
-            const user = userCredentials.user;
             goTo('/home')
         } catch (error) {
-            console.log('Login error')
+            console.log(error)
         }
     }
 
     const logout = async () => {
-        console.log('aaaaaaaa')
-            await signOut($auth)
+            const result = await signOut($auth)
             goTo('/')
     }
 
@@ -38,10 +36,9 @@ export const useFirebase = () => {
         await navigateTo(path)
     }
     
-
     return{
         register,
         login,
-        logout
+        logout,
     }
 }

@@ -3,14 +3,8 @@
 .search-container{
     border-radius: 20px;
     width: 65vw;
-    height: fit-content;
-    position: relative;
-    top: 8vw;
-    bottom: 0;
-    left: 0;
-    right: 0;
     margin: auto;
-    margin-bottom: 12vw;
+    margin-top: 8vw;
     display: flex;
     align-items: center;
     text-align: center;
@@ -25,18 +19,22 @@
             color: white;
             font-family: $primary-font;
             font-weight: 800;
-            font-size: 20px;
+            font-size: 150%;
             margin-bottom: 20px;
         }
         input{
             border-radius: 20px;
             border: none;
-            height: 3vw;
-            width: 20vw;
+            height: 5vh;
+            width: 50vw;
+            max-width: 280px;
+            min-width: 200px;
+            max-height: 80px;
+            min-height: 50px;
             text-indent: 1.5vh;
         }
     }
-    button{
+    .search{
         border: none;
         background-color: transparent;
         color: white;
@@ -47,21 +45,13 @@
         position: relative;
         display: flex;
         align-items: center;
-        .more-details{
-            position: absolute;
-            background-color: black;
-            height: 14.5vw;
-            width: 10vw;
-            display: flex;
-            align-items: center;
-            opacity: 0;
-            &:hover{
-                opacity: 0.5;
-            }
-        }
+        padding: 0.5vw 1vw;
         &:hover{
             color: white;
             cursor: pointer;
+            background-color: $secondary;
+            opacity: 0.5;
+            border-radius: 10px;
         }
     }
     .movies-list{
@@ -73,8 +63,12 @@
         width: 75vw;
         .movie{
             background: rgba(255, 255, 255, 0.1);
-            width: 10vw;
-            height: 20vw;
+            width: 30vw;
+            height: 60vw;
+            min-width: 50px;
+            min-height: 60px;
+            max-width: 170px;
+            max-height: 280px;
             margin: 5px 10px;
             display: flex;
             flex-direction: column;
@@ -85,177 +79,61 @@
             h6{
                 color: white;
                 font-family: $secondary-font;
-                font-size: 14px;
-                margin: 10px 0;
+                font-size: 0.65rem;
+                margin: 6px 0;
+                width: 7rem;
+                font-weight: 800;
             }
             img{
-                height: 14.5vw;
-                width: 10vw;
+                height: 40vw;
+                width: 27vw;
+                max-width: 150px;
+                max-height: 190px;
+                min-width: 70px;
+                min-height: 100px;
                 &:hover{
                     opacity: 0.5;
                     cursor: pointer;
                 }
             }
-        }
-    }
-}
-
-
-////// Responsive
-/// 
-/// 
-@media (max-width:2560px) {
-    .search-container{
-        top: 0;
-        .search-input{
-            margin-bottom: 3vw;
-            label{
-                font-size: 1.7vw;
-                margin-bottom: 8%;
-            }
-            input{
-                border-radius: 40px;
-                font-size: 1vw;
-                text-indent: 25px;
-            }
-        }
-        button{
-            font-size: 40px;
-            margin-bottom: 3vw;
-        }
-        .movies-list{
-            .movie{
-                height: 22vw;
-                button{
-                    margin: 0;
-                }
-                h6{
-                    font-size: 1.1vw;
-                }
-            }
-        }
-    }
-}
-
-@media (max-width:1440px) {
-    .search-container{
-        .search-input{
-            label{
-                font-size: 22px;
-            }
-            input{
-                font-size: 18px;
-                text-indent: 15px;
-            }
-        }
-        button{
-            font-size: 30px;
-        }
-        .movies-list{
-            margin-bottom: 5vw;
-            .movie{
-                height: 22vw;
-                h6{
-                    font-size:1.5vw;
-                }
-            }
-        }
-    }
-}
-@media (max-width:1024px) {
-    .search-container{
-        .search-input{
-            input{
-                width: 22vw;
-                height: 3.5vw;
-                font-size: 15px;
-            }
-        }
-        .movies-list{
-            .movie{
-                height: 22vw;
-                h6{
-                    font-size:1.5vw
-                }
-            }
-        }
-    }
-}
-
-@media (max-width:768px) {
-    .search-container{
-        button{
-            font-size: 18px;
-        }
-        .search-input{
-            input{
-                width:25vw;
-                height:5vw;
-            }
-        }
-        .movies-list{
-            margin-bottom: 45vw;
-            .movie{
-                height: 28vw;
-                h6{
-                    font-size: 2.2vw;
-                    width: 14vw;
-                }
-            }
-        }
-    }
-}
-
-@media (max-width:430px) {
-    .search-container{
-        top: 15vw;
-        .search-input{
-            margin-bottom: 8vw;
-            input{
-                width: 45vw;
-                height: 10vw;
-            }
-        }
-        button{
             .more-details{
+                position: absolute;
+                background-color: black;
                 height: 40vw;
-                width: 30vw;
-            }
-        }
-        .movies-list{
-            padding: 0;
-            margin-bottom: 75vw;
-            .movie{
-                margin:5px;
-                height: 55vw;
-                width: 22vw;
-                img{
-                    height: 40vw;
-                    width: 28vw;
-                }
-                h6{
-                    font-size: 14px;
-                    width: 29vw;
+                width: 27vw;
+                max-width: 150px;
+                max-height: 190px;
+                min-width: 70px;
+                min-height: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: $secondary-font;
+                text-transform: uppercase;
+                font-weight: 800;
+                // font-size: 2rem;
+                padding: 0;
+                opacity: 0;
+                &:hover{
+                    opacity: 0.5;
                 }
             }
         }
     }
-}
-
-@media (max-width:375px) {
-    .search-container{
-        .movies-list{
-            .movie{
-                height: 55vw;
-                width: 20vw;
-                padding-top: 14px;
-                img{
-                    height: 37vw;
-                    width: 25vw;
-                }
-                h6{
-                    font-size: 12px;
-                }
+    .pagination{
+        display: flex;
+        .pagination-btn{
+            margin: 2vw 15vw;
+            font-size: 1rem;
+            padding: 0.5vw 1vw;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            &:hover{
+                background-color: $secondary;
+                opacity: 0.5;
+                border-radius: 10px;
             }
         }
     }
