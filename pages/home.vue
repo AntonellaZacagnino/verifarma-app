@@ -9,26 +9,26 @@
     <div class="search-container">
       
       <div class="search-input">
-        <label for="search">Find a movie</label>
-        <input v-model="query" type="search" name="search" id="search">
+        <label for="search" aria-label="Find a movie">Find a movie</label>
+        <input aria-label="Insert a movie here" v-model="query" type="search" name="search" id="search">
       </div>
       <button class='search' @click="findMovie">Search</button>
       <div v-if="movieList.length > 0" class="pagination">
         <button @click="previous" class="pagination-btn previous">
-          <span class="material-symbols-outlined">arrow_back_ios</span>
+          <span aria-hidden="true" class="material-symbols-outlined">arrow_back_ios</span>
           Previous
         </button>
         <button @click="next" class="pagination-btn next">
           Next
-          <span class="material-symbols-outlined">arrow_forward_ios</span>
+          <span aria-hidden="true" class="material-symbols-outlined">arrow_forward_ios</span>
         </button>
       </div>
       <ul class="movies-list">
         <li class="movie" v-for="movie in movieList" :key="movie.imdbID">
           <button @click="movieDetails(movie.imdbID)">
             <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl more-details"><span>more details</span></div>
-            <img v-if="movie.Poster != 'N/A'" :src="movie.Poster" alt="">
-            <img v-else src="/not-image.jpg" alt="">
+            <img aria-label='Movie poster' v-if="movie.Poster != 'N/A'" :src="movie.Poster" alt="">
+            <img aria-label='Movie poster' v-else src="/not-image.jpg" alt="">
           </button>
           <h6>{{ movie.Title }}</h6>
         </li>
@@ -41,7 +41,6 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import Navbar from '~/components/navbar.vue';
-import { useRoute } from 'vue-router';
 
 export default {
   components: {

@@ -1,5 +1,3 @@
-
-
 <style lang="scss">
 @use "~/assets/scss/index.scss";
 </style>
@@ -9,8 +7,8 @@
     <div class="container">
       <UContainer>
         <div class="login-container">
-          <h1>Veri<span>Movies</span></h1>
-          <h2>What do you want to watch today?</h2>
+          <h1 aria-label="VeriMovies">Veri<span aria-label="VeriMovies">Movies</span></h1>
+          <h2 aria-label="What do you want to watch today?">What do you want to watch today?</h2>
           <div class="buttons">
             <button>
               <nuxt-link to="/sign-in">Sign in</nuxt-link>

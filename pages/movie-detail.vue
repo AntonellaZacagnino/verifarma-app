@@ -1,4 +1,3 @@
-
 <style lang="scss">
 @use "~/assets/scss/movie-detail.scss";
 </style>
@@ -6,8 +5,8 @@
 <template>
     <Navbar />
     <div v-if="movieDetails">
-      <div class="go-back">
-        <nuxt-link to="/home"><button><span class="material-symbols-outlined">arrow_circle_left</span>Go back</button></nuxt-link>
+      <div  class="go-back">
+        <nuxt-link to="/home"><button aria-label="Go back"><span class="material-symbols-outlined" aria-label="hidden" >arrow_circle_left</span>Go back</button></nuxt-link>
       </div>
       <UContainer>
         <div class="title">
@@ -27,8 +26,8 @@
             <p>{{ movieDetails.Plot }}</p>
           </div>
         <div class="poster-and-details">
-          <img v-if="movieDetails.Poster != 'N/A' ":src="movieDetails.Poster" alt="">
-          <img v-else src="/not-image.jpg">
+          <img aria-label='Movie poster' v-if="movieDetails.Poster != 'N/A' ":src="movieDetails.Poster" alt="">
+          <img aria-label='Movie poster' v-else src="/not-image.jpg">
           <div class="details">
             <div class="info">
               <span><strong>Released date:</strong> {{ movieDetails.Released }}</span>
@@ -43,8 +42,7 @@
       </UContainer>
     </div>
     <div v-else class="loader-container"> 
-      {{ errorResponse }}
-      <div class="dots-spinner" :style="spinnerStyle">
+      <div class="dots-spinner" >
         <div class="dot"></div>
         <div class="dot"></div>
         <div class="dot"></div>
@@ -59,7 +57,6 @@
   import Navbar from '~/components/navbar.vue'
   import { ref } from 'vue';
 
-  var movieID = '';
   export default {
     components:{
       Navbar
@@ -68,24 +65,19 @@
       var route = useRoute();
       var movieDetails = ref(null);
       var errorResponse = ''
-
-      console.log(route.query.movie)
       async function fetchMovieDetails(movieID) {
-        console.log(2)
         try {
           const response = await axios.get(`http://www.omdbapi.com/?apikey=87430ed5&i=${movieID}`);
-          console.log(response.data)
           return response.data;
         } catch (error) {
           errorResponse = error
-          return null;
+          return errorResponse;
         }
       }
     
       (async () => {
         const movieID = route.query.movie;
         if (movieID) {
-          console.log(1)
           movieDetails.value = await fetchMovieDetails(movieID);
         }
       })();

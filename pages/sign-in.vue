@@ -1,4 +1,3 @@
-
 <style lang="scss">
 @use "~/assets/scss/sign-in.scss";
 </style>

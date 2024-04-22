@@ -18,12 +18,12 @@ body{
         background: rgba(255, 255, 255, 0.1);
         border-radius: 20px;
         width: 80vw;
-        height: 70vw;
+        height: 74vw;
         max-width: 800px;
         min-width: 300px;
         max-height: 340px;
-        min-height: 400px;
-        margin-top: calc(4px + 10vw);
+        min-height: 460px;
+        margin-top: calc(4px + 6vw);
         display: flex;
         align-items: center;
         text-align: center;
@@ -34,13 +34,13 @@ body{
         font-weight: 800;
         h1{
             font-family: $primary-title;
-            font-size: 50px;
+            font-size: calc(6px + 5vw);
             margin: 0;
         }
         span{
             color: $secondary;
             font-family: $secondary-title;
-            font-size: 52px;
+            font-size: calc(8px + 5vw);
         }
         h2{
             font-family: $secondary-font;
