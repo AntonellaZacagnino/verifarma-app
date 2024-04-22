@@ -24,7 +24,6 @@
         }
         input{
             border-radius: 20px;
-            color: white;
             border: none;
             height: 5vh;
             width: 50vw;
@@ -48,6 +47,7 @@
         align-items: center;
         padding: 0.5vw 1vw;
         &:hover{
+            color: white;
             cursor: pointer;
             background-color: $secondary;
             opacity: 0.5;
