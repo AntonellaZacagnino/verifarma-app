@@ -1,104 +1,299 @@
 @import "/assets/scss/variables";
 
 body{
-    background: -webkit-linear-gradient(black, $primary);
-      background: -moz-linear-gradient(black, $primary);
-      background: -o-linear-gradient(black, $primary);
-      background: linear-gradient(black, $primary);
-      background-attachment:fixed;
+    background: $gradient-primary;
+    background-attachment: fixed;
+    min-height: 100vh;
 }
 
 .container{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: $spacing-lg;
+    
     .signIn-container {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        width: 80vw;
-        height: 74vw;
-        max-width: 800px;
-        min-width: 300px;
-        max-height: 340px;
-        min-height: 460px;
-        margin-top: calc(4px + 6vw);
+        @include glass-effect;
+        border-radius: $radius-2xl;
+        width: 100%;
+        max-width: 420px;
+        padding: $spacing-3xl $spacing-2xl;
+        box-shadow: $shadow-2xl;
         display: flex;
         align-items: center;
         text-align: center;
         justify-content: center;
         flex-direction: column;
-        color: white;
+        color: $white;
         font-family: $primary-font;
-        font-weight: 800;
+        position: relative;
+        overflow: hidden;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        &:hover::before {
+            left: 100%;
+        }
+        
         a{
             text-decoration: none;
-            color: white;
+            color: inherit;
+            transition: all $transition-normal;
+            
+            &:hover {
+                transform: scale(1.05);
+            }
+            
             h1{
                 font-family: $primary-title;
-                font-size: calc(6px + 5vw);
-                margin: 0;
+                font-size: clamp(2rem, 5vw, 3.5rem);
+                font-weight: 700;
+                margin: 0 0 $spacing-sm 0;
+                background: linear-gradient(135deg, $white, $gray-200);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
             }   
         }
+        
         span{
             color: $secondary;
             font-family: $secondary-title;
-            font-size: calc(8px + 5vw);
+            font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+            font-weight: 600;
+            background: $gradient-secondary;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+        
         h2{
             font-family: $secondary-font;
-            font-size: 26px;
+            font-size: 1.75rem;
+            font-weight: 600;
             text-transform: uppercase;
-            margin-top: 10px;
-            margin-bottom: 0;
+            letter-spacing: 1px;
+            margin: $spacing-xl 0 $spacing-2xl 0;
+            color: $gray-100;
         }
+        
         .form{
-            .input{
-                display: flex;
-                flex-direction: column;
-                margin: 25px 0;
+            width: 100%;
+            
+            .space-y-4 > * + * {
+                margin-top: $spacing-lg !important;
+            }
+            
+            :deep(.form-group) {
+                margin-bottom: $spacing-lg;
+            }
+            
+            :deep(label) {
                 font-family: $primary-font;
-                label{
-                    font-size: 12px;
-                    font-weight: 500;
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: $gray-200;
+                margin-bottom: $spacing-sm;
+                display: block;
+                text-align: left;
+            }
+            
+            :deep(input) {
+                width: 100%;
+                padding: $spacing-md $spacing-lg;
+                border-radius: $radius-lg;
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                background: rgba(255, 255, 255, 0.05);
+                color: $white;
+                font-family: $primary-font;
+                font-size: 1rem;
+                transition: all $transition-normal;
+                backdrop-filter: blur(5px);
+                
+                &::placeholder {
+                    color: $gray-400;
                 }
-                input{
-                    color: white;
-                    width: 270px;
-                    height: 35px;
-                    border-radius: 30px;
-                    border: none;
-                    text-indent: 15px;
+                
+                &:focus {
+                    outline: none;
+                    border-color: $secondary;
+                    background: rgba(255, 255, 255, 0.1);
+                    box-shadow: 0 0 0 3px rgba($secondary, 0.2);
+                    transform: translateY(-1px);
+                }
+                
+                &:hover {
+                    border-color: rgba(255, 255, 255, 0.2);
                 }
             }
+            
             button{
+                width: 100%;
+                padding: $spacing-md $spacing-xl;
                 font-family: $secondary-font;
+                font-weight: 600;
+                font-size: 1.1rem;
                 text-transform: uppercase;
-                font-weight: 800;
-                font-size: 20px;
-                background-color: transparent;
+                letter-spacing: 0.5px;
+                background: $gradient-secondary;
                 border: none;
-                color: white;
-                padding: 0.5vw 1vw;
-                &:hover{
-                    cursor: pointer;
-                    background-color: $secondary !important;
-                    opacity: 0.5;
-                    border-radius: 10px;
+                border-radius: $radius-lg;
+                color: $white;
+                margin-top: $spacing-lg;
+                position: relative;
+                overflow: hidden;
+                @include button-hover;
+                
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                    transition: left 0.5s;
+                }
+                
+                &:hover::before {
+                    left: 100%;
+                }
+                
+                &:hover {
+                    background: linear-gradient(135deg, $secondary-light 0%, $secondary 50%, $secondary-dark 100%);
+                    box-shadow: $shadow-xl;
+                }
+                
+                &:active {
+                    transform: translateY(1px);
                 }
             }
         }
+        
         .options{
             display: flex;
             flex-direction: column;
-            margin-top: 10px;
-            button{
+            align-items: center;
+            margin-top: $spacing-xl;
+            gap: $spacing-lg;
+            
+            .forgot-password {
                 font-family: $secondary-font;
-                color: white;
+                color: $gray-300;
                 border: none;
                 background-color: transparent;
-                font-size: 13px;
-                margin: 2px;
+                font-size: 0.875rem;
+                font-weight: 500;
+                padding: $spacing-sm;
+                border-radius: $radius-md;
+                transition: all $transition-normal;
+                
                 &:hover{
                     cursor: pointer;
+                    color: $secondary;
+                    transform: translateY(-1px);
                 }
+            }
+            
+            .signup-link {
+                text-align: center;
+                
+                p {
+                    font-family: $primary-font;
+                    font-size: 0.9rem;
+                    color: $gray-300;
+                    margin-bottom: $spacing-sm;
+                }
+                
+                .link {
+                    color: $secondary;
+                    text-decoration: none;
+                    font-family: $secondary-font;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    transition: all $transition-normal;
+                    
+                    &:hover {
+                        color: $secondary-light;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: $spacing-md $spacing-xl;
+            font-family: $secondary-font;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: $gradient-secondary;
+            border: none;
+            border-radius: $radius-lg;
+            color: $white;
+            margin-top: $spacing-xl;
+            position: relative;
+            overflow: hidden;
+            display: block;
+            @include button-hover;
+            
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: left 0.5s;
+            }
+            
+            &:hover::before {
+                left: 100%;
+            }
+            
+            &:hover {
+                background: linear-gradient(135deg, $secondary-light 0%, $secondary 50%, $secondary-dark 100%);
+                box-shadow: $shadow-xl;
+            }
+            
+            &:active {
+                transform: translateY(1px);
+            }
+            
+            &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            margin: $spacing-lg;
+            padding: $spacing-2xl $spacing-lg;
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            span {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
             }
         }
     }

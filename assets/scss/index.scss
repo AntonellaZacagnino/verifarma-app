@@ -1,72 +1,264 @@
 @import "/assets/scss/variables";
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body{
-    background: -webkit-linear-gradient(black, $primary);
-      background: -moz-linear-gradient(black, $primary);
-      background: -o-linear-gradient(black, $primary);
-      background: linear-gradient(black, $primary);
-      background-attachment:fixed;
+    margin: 0;
+    padding: 0;
+    font-family: $primary-font;
+    background: $gradient-primary;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: $white;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: $gradient-secondary;
+  border-radius: $radius-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, $secondary-light 0%, $secondary-dark 100%);
 }
 
 .container{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: $spacing-lg;
+    
     .login-container {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        width: 80vw;
-        height: 70vw;
-        max-width: 500px;
-        min-width: 300px;
-        max-height: 340px;
-        min-height: 300px;
-        margin: 25% 0;
+        @include glass-effect;
+        border-radius: $radius-2xl;
+        width: 100%;
+        max-width: 480px;
+        padding: $spacing-3xl $spacing-2xl;
+        box-shadow: $shadow-2xl;
         display: flex;
         align-items: center;
         text-align: center;
         justify-content: center;
         flex-direction: column;
-        color: white;
+        color: $white;
         font-family: $primary-font;
-        font-weight: 800;
+        position: relative;
+        overflow: hidden;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        &:hover::before {
+            left: 100%;
+        }
+        
         h1{
             font-family: $primary-title;
-            font-size: calc(30px + 5vw);
-            margin: 0;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            margin: 0 0 $spacing-sm 0;
+            background: linear-gradient(135deg, $white, $gray-200);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+        
         span{
-            color: $secondary;
             font-family: $secondary-title;
-            font-size: calc(32px + 5vw)
+            font-size: clamp(2.8rem, 8.5vw, 5.5rem);
+            font-weight: 600;
+            background: $gradient-secondary;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-left: -4px;
         }
+        
         h2{
             font-family: $primary-font;
-            font-size: calc(1px + 1rem);
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 400;
+            color: $gray-300;
+            margin: $spacing-xl 0 $spacing-2xl 0;
+            opacity: 0.9;
         }
+        
         .buttons{
-            margin-top: 20px;
-            width: 60%;
             display: flex;
-            justify-content: space-between;
-            flex-direction: row;
+            gap: $spacing-lg;
+            width: 100%;
+            max-width: 320px;
+            
             button{
+                flex: 1;
+                padding: $spacing-md $spacing-lg;
                 font-family: $secondary-font;
-                font-weight: 800;
-                font-size: calc(4px + 1rem);
+                font-weight: 600;
+                font-size: 1rem;
                 text-transform: uppercase;
-                background-color: transparent;
-                border: none;
-                padding: 0.5vw 1vw;
+                letter-spacing: 0.5px;
+                border: 2px solid rgba(255, 255, 255, 0.2);
+                border-radius: $radius-lg;
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(10px);
+                transition: all $transition-normal;
+                position: relative;
+                overflow: hidden;
+                
                 a{
-                    color: white;
+                    color: $white;
                     text-decoration: none;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
                 }
+                
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+                    transition: left 0.5s;
+                }
+                
                 &:hover{
-                    opacity: 0.5;
-                    cursor: pointer;
-                    background-color: $secondary;
-                    border-radius: 10px;
+                    background: $gradient-secondary;
+                    border-color: $secondary;
+                    transform: translateY(-2px);
+                    box-shadow: $shadow-lg;
+                    
+                    &::before {
+                        left: 100%;
+                    }
+                }
+                
+                &:active {
+                    transform: translateY(0);
+                }
+                
+                &:first-child {
+                    background: $gradient-secondary;
+                    border-color: $secondary;
+                    
+                    &:hover {
+                        background: linear-gradient(135deg, $secondary-light 0%, $secondary 50%, $secondary-dark 100%);
+                    }
                 }
             }
         }
+        
+        @media (max-width: 768px) {
+            margin: $spacing-lg;
+            padding: $spacing-2xl $spacing-lg;
+            
+            .buttons {
+                flex-direction: column;
+                gap: $spacing-md;
+            }
+        }
     }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease-out;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.error-state {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  font-size: 0.875rem;
+}
+
+.success-state {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  font-size: 0.875rem;
 }

@@ -4,25 +4,42 @@
 
 <template>
     <UContainer class="container">
-        <div class="signUp-container">
-            <nuxt-link to="/"><h1>Veri<span>Movies</span></h1></nuxt-link>
-            <h2>Sign up</h2>
+        <div class="signUp-container fade-in">
+            <nuxt-link to="/" aria-label="Go to VeriMovies home">
+                <h1>Veri<span>Movies</span></h1>
+            </nuxt-link>
+            <h2>Create Account</h2>
             <UForm :schema="schema" :state="state" class="space-y-4 form" @submit="onSubmit">
-                <UFormGroup label="Email" name="email">
-                    <UInput v-model="state.email" />
+                <UFormGroup label="Email Address" name="email">
+                    <UInput 
+                        v-model="state.email" 
+                        type="email"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                    />
                 </UFormGroup>
                 
                 <UFormGroup label="Password" name="password">
-                    <UInput v-model="state.password" type="password" />
+                    <UInput 
+                        v-model="state.password" 
+                        type="password"
+                        placeholder="Create a secure password"
+                        autocomplete="new-password"
+                    />
                 </UFormGroup>
                 
-                <UButton class="submit" type="submit">
-                    Submit
+                <UButton class="submit" type="submit" :loading="isLoading">
+                    {{ isLoading ? 'Creating Account...' : 'Create Account' }}
                 </UButton>
             </UForm>
+            
+            <div class="login-link">
+                <p>Already have an account?</p>
+                <nuxt-link to="/sign-in" class="link">Sign In</nuxt-link>
+            </div>
         </div>
     </UContainer>
-  </template>
+</template>
 
 <script setup lang="ts">
     import { z } from 'zod'
@@ -31,10 +48,11 @@
     const route = useRoute()
     const { $auth } = useNuxtApp()
     const { register } = useFirebase()
+    const isLoading = ref(false)
 
     const schema = z.object({
-        email: z.string().email('Invalid email'),
-        password: z.string().min(6, 'Your password must be at least 8 characters')
+        email: z.string().email('Please enter a valid email address'),
+        password: z.string().min(8, 'Password must be at least 8 characters long')
     })
 
     type Schema = z.output<typeof schema>
@@ -45,10 +63,15 @@
     })
 
     async function onSubmit (event: FormSubmitEvent<Schema>) {
+        if (isLoading.value) return
+        
+        isLoading.value = true
         try {
             await register(event.data.email, event.data.password)
         } catch (error) {
-            console.log(error)
+            console.error('Registration error:', error)
+        } finally {
+            isLoading.value = false
         }
     }
 </script>
